@@ -6,7 +6,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "CorePlot.h"
+#import "CorePlot/CorePlot.h"
 
 #define TIMEFRAME_30MIN  100
 #define TIMEFRAME_12HOUR 200

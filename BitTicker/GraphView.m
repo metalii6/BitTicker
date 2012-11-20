@@ -5,7 +5,7 @@
 */
 
 #import "GraphView.h"
-#import "CorePlot.h"
+#import "CorePlot/CorePlot.h"
 
 
 @implementation GraphView
