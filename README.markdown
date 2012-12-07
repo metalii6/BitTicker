@@ -1,6 +1,6 @@
 ### BitTicker 
 
-**Fork Notes: ** This fork adds support for saved conversion amounts.
+**Fork Notes:** This fork adds support for saved conversion amounts.
 
 ![Screenshot](http://i.imgur.com/wGMct.png)
 
