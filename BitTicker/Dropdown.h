@@ -6,6 +6,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "SavedAmounts.h"
+
 
 @class StatusItemView;
 
@@ -21,9 +23,9 @@
 	
 	NSNumber *_tickerValue;
 	
-
-    
+  SavedAmounts *saved;
 }
+- (IBAction)addSavedAmount:(id)sender;
 
 @property (copy) NSNumber *tickerValue;
 
@@ -35,5 +37,7 @@
 @property (strong) NSString *last;
 
 @property (strong) IBOutlet NSView *dropdownView;
+@property (weak) IBOutlet NSTableView *savedTable;
+@property (weak) IBOutlet NSTextField *addSavedField;
 
 @end

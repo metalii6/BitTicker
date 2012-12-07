@@ -27,17 +27,19 @@
 {
     self = [super init];
 
-	volumeFormatter = [[NSNumberFormatter alloc] init];
-	volumeFormatter.numberStyle = NSNumberFormatterDecimalStyle;
-	volumeFormatter.hasThousandSeparators = YES;
+    volumeFormatter = [[NSNumberFormatter alloc] init];
+    volumeFormatter.numberStyle = NSNumberFormatterDecimalStyle;
+    volumeFormatter.hasThousandSeparators = YES;
 
-	currencyFormatter = [[NSNumberFormatter alloc] init];
-	currencyFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
-	currencyFormatter.currencyCode = @"USD"; // TODO: Base on market currency
-	currencyFormatter.thousandSeparator = @","; // TODO: Base on local seperator for currency
-	currencyFormatter.alwaysShowsDecimalSeparator = YES;
-	currencyFormatter.hasThousandSeparators = YES;
-	currencyFormatter.minimumFractionDigits = 4; // TODO: Configurable
+    currencyFormatter = [[NSNumberFormatter alloc] init];
+    currencyFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    currencyFormatter.currencyCode = @"USD"; // TODO: Base on market currency
+    currencyFormatter.thousandSeparator = @","; // TODO: Base on local seperator for currency
+    currencyFormatter.alwaysShowsDecimalSeparator = YES;
+    currencyFormatter.hasThousandSeparators = YES;
+    currencyFormatter.minimumFractionDigits = 4; // TODO: Configurable
+  
+    saved = [[SavedAmounts alloc] initWithCurrencyFormatter:currencyFormatter];
     return self;
 }
 
@@ -57,14 +59,14 @@
 	[menuItem setView:self.dropdownView];
 	[trayMenu addItem:menuItem];
 
-
+  [self.savedTable setDataSource:saved];
 	    
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveTicker:) name:@"MtGox-Ticker" object:nil];
 
 }
 
 -(void)didReceiveTicker:(NSNotification *)notification {
-	NSAssert([NSThread currentThread] == [NSThread mainThread],@"Not unning on main thread!");
+	NSAssert([NSThread currentThread] == [NSThread mainThread],@"Not running on main thread!");
 	NSLog(@"Dropdown got ticker");
 	NSDictionary *ticker = [[notification object] objectForKey:@"ticker"];
 		
@@ -77,4 +79,21 @@
 
 }
 
+- (IBAction)addSavedAmount:(id)sender {
+  NSLog(@"Adding Saved Amount");
+  NSString *amountValue = [self.addSavedField stringValue];
+  NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+  [f setNumberStyle:NSNumberFormatterDecimalStyle];
+  NSNumber *amountNum = [f numberFromString:amountValue];
+  if (amountNum == nil) {
+    NSLog(@"%@ is not a valid number.",amountValue);
+    return; // text was not number
+  }
+  
+  [saved addAmount:amountNum];
+  [self.addSavedField resignFirstResponder];
+  [self.addSavedField setStringValue:@""];
+  [self.savedTable reloadData];
+  NSLog(@"Added Saved Amount %@",amountNum);
+}
 @end
