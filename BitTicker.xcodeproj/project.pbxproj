@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6A01E6CC1671578C00913B65 /* SavedAmounts.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A01E6CB1671578C00913B65 /* SavedAmounts.m */; };
+		6A01E6CC1671578C00913B65 /* SavedWallets.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A01E6CB1671578C00913B65 /* SavedWallets.m */; };
 		83405B3C137F6DDF0060CAD4 /* MtGox.m in Sources */ = {isa = PBXBuildFile; fileRef = 83405B38137F6DDF0060CAD4 /* MtGox.m */; };
 		AA239F511379E67300150707 /* StatusItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA239F4E1379E67300150707 /* StatusItemView.m */; };
 		AA239F761379F17200150707 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA239F731379F17200150707 /* CoreServices.framework */; };
@@ -51,8 +51,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		6A01E6CA1671578C00913B65 /* SavedAmounts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedAmounts.h; sourceTree = "<group>"; };
-		6A01E6CB1671578C00913B65 /* SavedAmounts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedAmounts.m; sourceTree = "<group>"; };
+		6A01E6CA1671578C00913B65 /* SavedWallets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedWallets.h; sourceTree = "<group>"; };
+		6A01E6CB1671578C00913B65 /* SavedWallets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedWallets.m; sourceTree = "<group>"; };
 		83405B37137F6DDF0060CAD4 /* MtGox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MtGox.h; sourceTree = "<group>"; };
 		83405B38137F6DDF0060CAD4 /* MtGox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MtGox.m; sourceTree = "<group>"; };
 		AA239F4D1379E67300150707 /* StatusItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusItemView.h; sourceTree = "<group>"; };
@@ -179,8 +179,8 @@
 				AA79F0A8152AD664002C3EEB /* BitTicker.entitlements */,
 				83405B37137F6DDF0060CAD4 /* MtGox.h */,
 				83405B38137F6DDF0060CAD4 /* MtGox.m */,
-				6A01E6CA1671578C00913B65 /* SavedAmounts.h */,
-				6A01E6CB1671578C00913B65 /* SavedAmounts.m */,
+				6A01E6CA1671578C00913B65 /* SavedWallets.h */,
+				6A01E6CB1671578C00913B65 /* SavedWallets.m */,
 				AA239F4D1379E67300150707 /* StatusItemView.h */,
 				AA239F4E1379E67300150707 /* StatusItemView.m */,
 				AA435C0C13A2CB550050F307 /* Dropdown.h */,
@@ -312,7 +312,7 @@
 				AAA32C8615CA3D0500C45B89 /* AFPropertyListRequestOperation.m in Sources */,
 				AAA32C8715CA3D0500C45B89 /* AFURLConnectionOperation.m in Sources */,
 				AAA32C8815CA3D0500C45B89 /* AFXMLRequestOperation.m in Sources */,
-				6A01E6CC1671578C00913B65 /* SavedAmounts.m in Sources */,
+				6A01E6CC1671578C00913B65 /* SavedWallets.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

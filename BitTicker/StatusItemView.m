@@ -83,7 +83,8 @@
 	
 	currencyFormatter = [[NSNumberFormatter alloc] init];
 	currencyFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
-	currencyFormatter.currencyCode = @"USD"; // TODO: Base on market currency
+	currencyFormatter.currencyCode = @""; // TODO: Base on market currency
+  currencyFormatter.localizesFormat = NO;
 	currencyFormatter.thousandSeparator = @","; // TODO: Base on local seperator for currency
 	currencyFormatter.alwaysShowsDecimalSeparator = YES;
 	currencyFormatter.hasThousandSeparators = YES;

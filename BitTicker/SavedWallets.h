@@ -8,14 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SavedAmounts : NSObject <NSTableViewDataSource> {
-  NSMutableArray *amounts;
-  NSNumber *exchangeRate;
+@interface SavedWallets : NSObject <NSTableViewDataSource> {
+  NSMutableArray *wallets;
+  double exchangeRate;
   NSNumberFormatter *currencyFormatter;
 }
 
 - (id)initWithCurrencyFormatter:(NSNumberFormatter *)formatter;
-- (void)addAmount: (NSNumber *)amount;
+- (void)addWallet:(NSString *)wallet withAmount:(NSNumber *)amount;
+- (void)deleteWalletAtIndex:(NSUInteger)wallet;
 - (void)writeData;
 - (void)readData;
 @end

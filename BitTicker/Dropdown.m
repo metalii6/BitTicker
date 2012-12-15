@@ -33,13 +33,15 @@
 
     currencyFormatter = [[NSNumberFormatter alloc] init];
     currencyFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
-    currencyFormatter.currencyCode = @"USD"; // TODO: Base on market currency
+    currencyFormatter.currencyCode = @""; // TODO: Base on market currency
+    currencyFormatter.localizesFormat = NO;
+    currencyFormatter.currencySymbol = @"$";
     currencyFormatter.thousandSeparator = @","; // TODO: Base on local seperator for currency
     currencyFormatter.alwaysShowsDecimalSeparator = YES;
     currencyFormatter.hasThousandSeparators = YES;
     currencyFormatter.minimumFractionDigits = 4; // TODO: Configurable
   
-    saved = [[SavedAmounts alloc] initWithCurrencyFormatter:currencyFormatter];
+    saved = [[SavedWallets alloc] initWithCurrencyFormatter:currencyFormatter];
     return self;
 }
 
@@ -60,6 +62,7 @@
 	[trayMenu addItem:menuItem];
 
   [self.savedTable setDataSource:saved];
+  [self.addWalletField becomeFirstResponder];
 	    
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveTicker:) name:@"MtGox-Ticker" object:nil];
 
@@ -90,10 +93,22 @@
     return; // text was not number
   }
   
-  [saved addAmount:amountNum];
-  [self.addSavedField resignFirstResponder];
+  [saved addWallet:[self.addWalletField stringValue] withAmount:amountNum];
+  [saved writeData];
+  [self.addWalletField setStringValue:@""];
   [self.addSavedField setStringValue:@""];
+  [self.addWalletField becomeFirstResponder];
   [self.savedTable reloadData];
   NSLog(@"Added Saved Amount %@",amountNum);
+}
+
+- (IBAction)deleteSavedAmount:(id)sender {
+  NSInteger selected = [self.savedTable selectedRow];
+  if (selected < 0) {
+    return;
+  }
+  [saved deleteWalletAtIndex:(NSUInteger)selected];
+  [self.savedTable reloadData];
+  [saved writeData];
 }
 @end
