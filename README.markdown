@@ -2,7 +2,7 @@
 
 **Fork Notes:** This fork adds support for saved conversion amounts.
 
-![Screenshot](http://i.imgur.com/wGMct.png)
+![Screenshot](http://i.imgur.com/2VxHR.png)
 
 BitTicker is a Bitcoin stock ticker built to work with MtGox Bitcoin market.
 
