@@ -26,5 +26,6 @@
 @property (strong) NSTimer *colorTimer;
 
 - (void)setTickerValue:(NSNumber *)value;
+- (void)openMenu;
 
 @end

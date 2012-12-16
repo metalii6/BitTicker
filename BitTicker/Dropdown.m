@@ -39,7 +39,7 @@
     currencyFormatter.thousandSeparator = @","; // TODO: Base on local seperator for currency
     currencyFormatter.alwaysShowsDecimalSeparator = YES;
     currencyFormatter.hasThousandSeparators = YES;
-    currencyFormatter.minimumFractionDigits = 4; // TODO: Configurable
+    currencyFormatter.minimumFractionDigits = 2; // TODO: Configurable
   
     saved = [[SavedWallets alloc] initWithCurrencyFormatter:currencyFormatter];
     return self;
@@ -84,6 +84,7 @@
 
 - (IBAction)addSavedAmount:(id)sender {
   NSLog(@"Adding Saved Amount");
+  [self.dropdownView becomeFirstResponder];
   NSString *amountValue = [self.addSavedField stringValue];
   NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
   [f setNumberStyle:NSNumberFormatterDecimalStyle];

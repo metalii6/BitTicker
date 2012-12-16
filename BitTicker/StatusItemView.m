@@ -97,9 +97,20 @@
 
 - (void)mouseDown:(NSEvent *)event {
 	NSLog(@"Menu click");
-    [[self menu] setDelegate:self];
-    [statusItem popUpStatusItemMenu:[self menu]];
-    [self setNeedsDisplay:YES];
+  // HACK menus can not have selected text fields unless they become the active app
+  // the delay is a hack, the correct method is to use the application delegates
+  // activated method.
+  [NSApp arrangeInFront:nil];
+  [NSApp activateIgnoringOtherApps:YES];
+  [self performSelector:@selector(openMenu) withObject:nil afterDelay:0.1];
+}
+
+- (void)openMenu {
+  [[self menu] setDelegate:self];
+  [statusItem popUpStatusItemMenu:[self menu]];
+//  NSView *dropDownView = [[self.menu itemAtIndex:0] view];
+//  [dropDownView becomeFirstResponder];
+  [self setNeedsDisplay:YES];
 }
 
 - (void)rightMouseDown:(NSEvent *)event {
@@ -110,9 +121,15 @@
 - (void)menuWillOpen:(NSMenu *)menu {
     isMenuVisible = YES;
     [self setNeedsDisplay:YES];
+  NSArray* apps = [NSRunningApplication
+                   runningApplicationsWithBundleIdentifier:[[NSBundle mainBundle] bundleIdentifier]];
+  [(NSRunningApplication*)[apps objectAtIndex:0]
+   activateWithOptions: NSApplicationActivateAllWindows];
 }
 
 - (void)menuDidClose:(NSMenu *)menu {
+    NSView *dropDownView = [[self.menu itemAtIndex:0] view];
+    [dropDownView resignFirstResponder];
     isMenuVisible = NO;
     [menu setDelegate:nil];    
     [self setNeedsDisplay:YES];
