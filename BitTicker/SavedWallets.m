@@ -27,6 +27,23 @@
   return [wallets count];
 }
 
+- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)column row:(NSInteger)rowIndex {
+  return ![column.identifier isEqualToString:@"value"];
+}
+
+- (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)column row:(NSInteger)rowIndex {
+  NSDictionary *dict = [wallets objectAtIndex:rowIndex];
+  if ([column.identifier isEqualToString:@"amount"]) {
+    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+    [f setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSNumber *amount = [f numberFromString:anObject];
+    [dict setValue:amount forKey:@"amount"];
+  } else if ([column.identifier isEqualToString:@"wallet"]) {
+    [dict setValue:anObject forKey:@"name"];
+  }
+  [self writeData];
+}
+
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)column row:(NSInteger)rowIndex {
   NSDictionary *dict = [wallets objectAtIndex:rowIndex];
   if ([column.identifier isEqualToString:@"amount"]) {
@@ -44,6 +61,12 @@
 }
 
 - (void)addWallet:(NSString *)wallet withAmount:(NSNumber *)amount {
+  for (NSDictionary *dict in wallets) {
+    if ([[dict objectForKey:@"name"] isEqualToString:wallet]) {
+      [dict setValue:amount forKey:@"amount"];
+      return;
+    }
+  }
   NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
                           wallet,@"name", amount, @"amount", nil];
   [wallets addObject:dict];

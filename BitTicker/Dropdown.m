@@ -51,6 +51,7 @@
     
 	statusItemView = [[StatusItemView alloc] init];
 	statusItemView.statusItem = _statusItem;
+  statusItemView.dropdown = self;
 	[statusItemView setToolTip:@"BitTicker"];
 		
 	[_statusItem setView:statusItemView];
@@ -62,6 +63,7 @@
 	[trayMenu addItem:menuItem];
 
   [self.savedTable setDataSource:saved];
+  [self.savedTable setDelegate:saved];
   [self.addWalletField becomeFirstResponder];
 	    
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveTicker:) name:@"MtGox-Ticker" object:nil];

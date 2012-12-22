@@ -5,6 +5,7 @@
 */
 
 #import <Cocoa/Cocoa.h>
+#import "Dropdown.h"
 
 @interface StatusItemView : NSView <NSMenuDelegate> {
     NSStatusItem *statusItem;
@@ -20,6 +21,7 @@
 	NSNumberFormatter *currencyFormatter;
 }
 
+@property (strong) Dropdown *dropdown;
 @property (strong) NSStatusItem *statusItem;
 @property (strong) NSNumber *tickerValue;
 @property (strong) NSNumber *previousTickerValue;

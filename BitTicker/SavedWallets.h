@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SavedWallets : NSObject <NSTableViewDataSource> {
+@interface SavedWallets : NSObject <NSTableViewDataSource,NSTableViewDelegate> {
   NSMutableArray *wallets;
   double exchangeRate;
   NSNumberFormatter *currencyFormatter;

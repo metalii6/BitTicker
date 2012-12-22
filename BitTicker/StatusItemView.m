@@ -108,8 +108,6 @@
 - (void)openMenu {
   [[self menu] setDelegate:self];
   [statusItem popUpStatusItemMenu:[self menu]];
-//  NSView *dropDownView = [[self.menu itemAtIndex:0] view];
-//  [dropDownView becomeFirstResponder];
   [self setNeedsDisplay:YES];
 }
 
@@ -121,10 +119,6 @@
 - (void)menuWillOpen:(NSMenu *)menu {
     isMenuVisible = YES;
     [self setNeedsDisplay:YES];
-  NSArray* apps = [NSRunningApplication
-                   runningApplicationsWithBundleIdentifier:[[NSBundle mainBundle] bundleIdentifier]];
-  [(NSRunningApplication*)[apps objectAtIndex:0]
-   activateWithOptions: NSApplicationActivateAllWindows];
 }
 
 - (void)menuDidClose:(NSMenu *)menu {
