@@ -32,12 +32,12 @@
 }
 
 - (void)tableView:(NSTableView *)aTableView setObjectValue:(id)anObject forTableColumn:(NSTableColumn *)column row:(NSInteger)rowIndex {
-  NSDictionary *dict = [wallets objectAtIndex:rowIndex];
+  NSMutableDictionary *dict = [wallets objectAtIndex:rowIndex];
   if ([column.identifier isEqualToString:@"amount"]) {
     NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
     [f setNumberStyle:NSNumberFormatterDecimalStyle];
     NSNumber *amount = [f numberFromString:anObject];
-    [dict setValue:amount forKey:@"amount"];
+    dict[@"amount"] = amount;
   } else if ([column.identifier isEqualToString:@"wallet"]) {
     [dict setValue:anObject forKey:@"name"];
   }
@@ -67,7 +67,7 @@
       return;
     }
   }
-  NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
+  NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
                           wallet,@"name", amount, @"amount", nil];
   [wallets addObject:dict];
 }
